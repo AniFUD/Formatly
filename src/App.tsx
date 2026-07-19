@@ -5,18 +5,31 @@ import type { FileItem } from './components/FileCard';
 import { detectFileCategory, getTargetFormats } from './utils/registry';
 import { convertFile, compressFile } from './utils/engine';
 
+// Helper to decode a minimal valid PDF base64 string into a File object
+const getValidMockPdfFile = (fileName: string): File => {
+  const base64Pdf = 'JVBERi0xLgoxIDAgb2JqPDwvUGFnZXMgMiAwIFI+PmVuZG9iagoyIDAgb2JqPDwvS2lkc1szIDAgUl0vQ291bnQgMT4+ZW5kb2JqCjMgMCBvYmo8PC9QYXJlbnQgMiAwIFI+PmVuZG9iagp0cmFpbGVyIDw8L1Jvb3QgMSAwIFI+Pg==';
+  try {
+    const byteCharacters = atob(base64Pdf);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return new File([byteArray], fileName, { type: 'application/pdf' });
+  } catch {
+    return new File(['%PDF-1.1\nFormatly Mock PDF'], fileName, { type: 'application/pdf' });
+  }
+};
+
 export default function App() {
   const [mode, setMode] = useState<'convert' | 'compress'>('convert');
   const [files, setFiles] = useState<FileItem[]>(() => {
     if (typeof window !== 'undefined' && window.location.search.includes('mock=true')) {
+      const fileName = 'very_long_file_name_that_should_truncate_gracefully_to_fit_in_the_row_and_leave_plenty_of_space_for_other_components.pdf';
       return [{
         id: 'mock-file-id',
-        file: new File(
-          ['Formatly Mock Document Content\n-------------------------------\nThis is a mock PDF file used for testing conversion and compression in the UI.'],
-          'very_long_file_name_that_should_truncate_gracefully_to_fit_in_the_row_and_leave_plenty_of_space_for_other_components.pdf',
-          { type: 'application/pdf' }
-        ),
-        name: 'very_long_file_name_that_should_truncate_gracefully_to_fit_in_the_row_and_leave_plenty_of_space_for_other_components.pdf',
+        file: getValidMockPdfFile(fileName),
+        name: fileName,
         size: 1024 * 1024 * 5,
         category: 'documents',
         sourceFormat: 'pdf',
