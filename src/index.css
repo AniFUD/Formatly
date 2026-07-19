@@ -1,0 +1,396 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Design Tokens - Light Theme */
+  --bg-color: #fafafa;
+  --text-primary: #000000;
+  --text-secondary: #777777;
+  --text-tertiary: #888888;
+  --card-bg: #ffffff;
+  --card-border: #e7e7e7;
+  --card-border-alt: #CF8E8E;
+  --card-background: #fdf7f7;
+  --tab-active-bg: #ccc;
+  --tab-inactive-border: #d3d2d2;
+  --btn-bg-primary: #000000;
+  --btn-text-primary: #ffffff;
+  --btn-bg-secondary: #ffffff;
+  --btn-text-secondary: #000000;
+  --noise-opacity: 0.15;
+  --success-color: #2e7d32;
+  --error-color: #c62828;
+  --error-bg: rgba(198, 40, 40, 0.1);
+  --panel-bg: rgba(0, 0, 0, 0.04);
+  --hover-bg: rgba(0, 0, 0, 0.04);
+  --accent-color: #2196f3;
+  --accent-bg: rgba(33, 150, 243, 0.05);
+
+  /* Custom Dropshadow kjj */
+  --shadow-kjj: 2px 2px 7px rgba(0, 0, 0, 0.1),
+    8px 9px 12px rgba(0, 0, 0, 0.09),
+    18px 21px 16px rgba(0, 0, 0, 0.05),
+    32px 37px 19px rgba(0, 0, 0, 0.01),
+    50px 57px 21px rgba(0, 0, 0, 0);
+
+  --shadow-card: 0px 6px 13px 0px rgba(143, 143, 143, 0.1),
+    0px 23px 23px 0px rgba(143, 143, 143, 0.09),
+    0px 52px 31px 0px rgba(143, 143, 143, 0.05);
+
+  --font-sans: 'Google Sans Flex', 'Outfit', sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+}
+
+/* Dark Theme Variables */
+.dark {
+  --bg-color: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-tertiary: #999999;
+  --card-bg: #2b2b2b;
+  --card-border: #3d3d3d;
+  --tab-active-bg: #444444;
+  --tab-inactive-border: #333333;
+  --btn-bg-primary: #ffffff;
+  --btn-text-primary: #000000;
+  --btn-bg-secondary: #222222;
+  --btn-text-secondary: #ffffff;
+  --noise-opacity: 0.25;
+  --card-border-alt: #5a3a3a;
+  --card-background: #251b1b;
+  --success-color: #81c784;
+  --error-color: #ef5350;
+  --error-bg: rgba(239, 83, 80, 0.15);
+  --panel-bg: #181818;
+  --hover-bg: rgba(255, 255, 255, 0.08);
+  --accent-color: #4fc3f7;
+  --accent-bg: rgba(96, 165, 250, 0.1);
+
+  --shadow-kjj: 2px 2px 7px rgba(0, 0, 0, 0.4),
+    8px 9px 12px rgba(0, 0, 0, 0.35),
+    18px 21px 16px rgba(0, 0, 0, 0.25);
+
+  --shadow-card: 0px 6px 13px 0px rgba(0, 0, 0, 0.5),
+    0px 23px 23px 0px rgba(0, 0, 0, 0.4),
+    0px 52px 31px 0px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Noise overlay effect removed */
+
+/* Base App Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Main Nav Header */
+.main-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 88px;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+.nav-brand {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.4px;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.theme-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Card Container */
+.card-wrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 1440px;
+  max-width: 100%;
+  padding: 0 24px;
+}
+
+/* Bio Text */
+.bio-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.bio-title {
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.8px;
+}
+
+.bio-desc {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 24px;
+  max-width: 472px;
+}
+
+/* Switch Button Pill */
+.mode-switch-pill {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 400px;
+  background: linear-gradient(127deg, #e0e0e0 26%, #f9f9f9 144%);
+  transition: all 0.3s ease;
+}
+
+.dark .mode-switch-pill {
+  background: linear-gradient(127deg, #222222 26%, #333333 144%);
+}
+
+.mode-switch-btn {
+  height: 48px;
+  width: 112px;
+  border: none;
+  border-radius: 200px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.mode-switch-btn.active {
+  background-color: #000;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: var(--shadow-kjj);
+}
+
+.dark .mode-switch-btn.active {
+  background-color: #fff;
+  color: #000;
+}
+
+.mode-switch-btn.inactive {
+  background: transparent;
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+/* Sub-gradient/glow overlay in switch button */
+.btn-glow {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 182px;
+  height: 15px;
+  opacity: 0.15;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Tab category buttons (Document, Image, Audio, Video) */
+.category-tabs-container {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 400px;
+}
+
+.category-tab-btn {
+  border: 1.5px solid var(--tab-inactive-border);
+  border-radius: 8px;
+  background-color: transparent;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.category-tab-btn.active {
+  background-color: var(--tab-active-bg);
+  border-color: transparent;
+  font-weight: 500;
+}
+
+.category-tab-btn:hover:not(.active) {
+  border-color: var(--text-primary);
+}
+
+/* Global Conversion Mapper Preview (HEIC -> JPG) */
+.conversion-mapper-preview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.format-preview-pill {
+  border: 1.5px solid var(--text-primary);
+  border-radius: 10px;
+  padding: 2px;
+  width: 77px;
+  height: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  gap: 4px;
+}
+
+.arrow-divider {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-primary);
+}
+
+.arrow-line {
+  width: 24px;
+  height: 1.5px;
+  background-color: var(--text-primary);
+}
+
+/* Footer Section */
+.footer-section {
+  margin-top: auto;
+  padding: 64px 0 32px 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--text-tertiary);
+  user-select: none;
+}
+
+.footer-author {
+  font-style: italic;
+  color: var(--text-primary);
+  letter-spacing: -0.32px;
+  font-weight: 600;
+}
+
+/* Dropzone Hover and States */
+.dropzone-container:hover:not(.disabled) {
+  border-color: var(--card-border) !important;
+}
+
+.dark .dropzone-container:hover:not(.disabled) {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.dropzone-container.active {
+  border-color: #2196f3 !important;
+  background-color: rgba(33, 150, 243, 0.05) !important;
+}
+
+/* Dropdown list item style */
+.dropdown-item:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+.dark .dropdown-item:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
