@@ -11,7 +11,11 @@ export default function App() {
     if (typeof window !== 'undefined' && window.location.search.includes('mock=true')) {
       return [{
         id: 'mock-file-id',
-        file: new File([''], 'very_long_file_name_that_should_truncate_gracefully_to_fit_in_the_row_and_leave_plenty_of_space_for_other_components.pdf', { type: 'application/pdf' }),
+        file: new File(
+          ['Formatly Mock Document Content\n-------------------------------\nThis is a mock PDF file used for testing conversion and compression in the UI.'],
+          'very_long_file_name_that_should_truncate_gracefully_to_fit_in_the_row_and_leave_plenty_of_space_for_other_components.pdf',
+          { type: 'application/pdf' }
+        ),
         name: 'very_long_file_name_that_should_truncate_gracefully_to_fit_in_the_row_and_leave_plenty_of_space_for_other_components.pdf',
         size: 1024 * 1024 * 5,
         category: 'documents',
