@@ -394,3 +394,156 @@ body {
     transform: translateY(0) scale(1);
   }
 }
+
+/* ==========================================================================
+   Mobile Responsiveness & Adaptive Layouts
+   ========================================================================== */
+
+/* Main navigation adjustments */
+@media (max-width: 768px) {
+  .main-nav {
+    padding: 0 20px !important;
+    height: 70px !important;
+  }
+  .card-wrapper {
+    margin-top: 20px !important;
+    padding: 0 16px !important;
+    gap: 24px !important;
+  }
+  .bio-title {
+    font-size: 28px !important;
+    letter-spacing: -0.5px !important;
+  }
+  .bio-desc {
+    font-size: 14px !important;
+    line-height: 20px !important;
+    padding: 0 12px !important;
+  }
+  .category-tabs-container {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 6px !important;
+  }
+  .category-tab-btn {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+  }
+  
+  /* Queue toolbar actions vertical stacking */
+  .queue-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    text-align: center !important;
+  }
+  .queue-header > div:first-child {
+    justify-content: center !important;
+  }
+  .queue-header > div:nth-child(2) {
+    justify-content: center !important;
+  }
+}
+
+/* File Card Row mobile styles */
+.file-card-metadata {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.file-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .file-card-row {
+    flex-direction: column !important;
+    height: auto !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    padding: 20px 16px !important;
+    position: relative !important;
+  }
+  
+  .file-card-metadata {
+    width: 100% !important;
+    justify-content: space-between !important;
+    border-bottom: 1px solid var(--card-border) !important;
+    padding-bottom: 12px !important;
+    padding-right: 28px !important; /* Leave space for absolute-positioned trash button */
+  }
+  
+  .file-card-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+  
+  .selector-trigger-btn {
+    width: 100% !important;
+  }
+  
+  .action-trigger-btn {
+    width: 100% !important;
+  }
+  
+  .remove-file-btn {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+  }
+}
+
+/* Format selector popover mobile centering & scrollable tabs */
+@media (max-width: 768px) {
+  .format-popover {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 16px !important;
+    right: 16px !important;
+    width: calc(100vw - 32px) !important;
+    height: 380px !important;
+    transform: none !important;
+    transform-origin: bottom center !important;
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .popover-content {
+    flex-direction: column !important;
+  }
+  .popover-sidebar {
+    width: 100% !important;
+    height: 44px !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--card-border) !important;
+    flex-direction: row !important;
+    white-space: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    display: flex !important;
+    background-color: var(--panel-bg) !important;
+  }
+  .popover-sidebar button {
+    border-left: none !important;
+    border-bottom: 3px solid transparent !important;
+    padding: 8px 16px !important;
+    height: 100% !important;
+    flex: 0 0 auto !important;
+    text-align: center !important;
+  }
+  .popover-sidebar button[style*="border-left"] {
+    /* Translate active left border into active bottom border */
+    border-bottom: 3px solid var(--text-primary) !important;
+  }
+  .popover-grid {
+    grid-template-columns: repeat(2, 1fr) !important; /* Use 2 columns on extra small screens */
+  }
+}

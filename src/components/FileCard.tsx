@@ -127,6 +127,7 @@ export default function FileCard({
       >
         {/* Left Side: Metadata */}
         <div
+          className="file-card-metadata"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -140,6 +141,7 @@ export default function FileCard({
           data-node-id="457:140127"
         >
           <span
+            className="file-card-name"
             style={{
               fontWeight: 500,
               textOverflow: 'ellipsis',
@@ -162,6 +164,7 @@ export default function FileCard({
 
         {/* Right Side: Options & Actions */}
         <div
+          className="file-card-actions"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -176,6 +179,7 @@ export default function FileCard({
                 <div style={{ position: 'relative' }}>
                   <button
                     type="button"
+                    className="selector-trigger-btn"
                     onClick={() => setShowDropdown(!showDropdown)}
                     style={{
                       backgroundColor: 'var(--card-bg)',
@@ -209,6 +213,7 @@ export default function FileCard({
                   {showDropdown && (
                     <div
                       ref={dropdownRef}
+                      className="format-popover"
                       style={{
                         position: 'absolute',
                         bottom: '54px',
@@ -267,10 +272,11 @@ export default function FileCard({
                       </div>
 
                       {/* Content Area */}
-                      <div style={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
+                      <div className="popover-content" style={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
                         {/* Sidebar (only shown if not searching) */}
                         {!searchQuery.trim() && (
                           <div
+                            className="popover-sidebar"
                             style={{
                               width: '180px',
                               borderRight: '1px solid var(--card-border)',
@@ -325,6 +331,7 @@ export default function FileCard({
                           ) : (
                             <div
                               key={activeSubcat}
+                              className="popover-grid"
                               style={{
                                 display: 'grid',
                                 gridTemplateColumns: 'repeat(3, 1fr)',
@@ -370,6 +377,7 @@ export default function FileCard({
                 <div style={{ position: 'relative' }} ref={compressDropdownRef}>
                   <button
                     type="button"
+                    className="selector-trigger-btn"
                     onClick={() => setShowCompressDropdown(!showCompressDropdown)}
                     style={{
                       backgroundColor: 'var(--card-bg)',
@@ -497,6 +505,7 @@ export default function FileCard({
               {/* Action Trigger Button */}
               <button
                 type="button"
+                className="action-trigger-btn"
                 onClick={() => onStart(fileItem.id)}
                 style={{
                   backgroundColor: 'var(--btn-bg-primary)',
@@ -548,6 +557,7 @@ export default function FileCard({
           {/* Remove/Cancel Button */}
           <button
             type="button"
+            className="remove-file-btn"
             onClick={() => onRemove(fileItem.id)}
             style={{
               background: 'none',

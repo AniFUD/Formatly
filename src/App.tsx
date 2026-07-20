@@ -548,6 +548,7 @@ export default function App() {
 
               {/* Bulk Action Toolbar */}
               <div
+                className="queue-header"
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
